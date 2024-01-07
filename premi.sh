@@ -315,8 +315,6 @@ restart_system() {
     TIMEZONE=$(printf '%(%H:%M:%S)T')
     MYIP=$(curl -sS ipv4.icanhazip.com)
     TIME=$(date +'%Y-%m-%d %H:%M:%S')
-    curl -s ipinfo.io/city?token=75082b4831f909 >> /etc/xray/city
-    curl -s ipinfo.io/org?token=75082b4831f909  | cut -d " " -f 2-10 >> /etc/xray/isp
     TEXT="
 <code>────────────────────</code>
 <b>⚡AUTOSCRIPT PREMIUM⚡</b>
@@ -420,8 +418,8 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
     
     # Settings UP Nginix Server
     clear
-    curl -s ipinfo.io/city >>/etc/xray/city
-    curl -s ipinfo.io/org | cut -d " " -f 2-10 >>/etc/xray/isp
+    curl -s ipinfo.io/city?token=75082b4831f909 >> /etc/xray/city
+    curl -s ipinfo.io/org?token=75082b4831f909  | cut -d " " -f 2-10 >> /etc/xray/isp
     print_install "Memasang Konfigurasi Packet"
     wget -O /etc/haproxy/haproxy.cfg "${REPO}limit/haproxy.cfg" >/dev/null 2>&1
     wget -O /etc/nginx/conf.d/xray.conf "${REPO}limit/xray.conf" >/dev/null 2>&1
