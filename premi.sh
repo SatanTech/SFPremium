@@ -35,8 +35,8 @@ clear;clear;clear
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
 echo -e "  Welcome To Devils Tunnel ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
 echo -e " This Will Quick Setup VPN Server On Your Server"
-echo -e "  Auther : ${green} AdminSF ${NC}${YELLOW}(${NC} ${green} AdminSF${NC}${YELLOW})${NC}"
-echo -e " © Recode By My Self AdminSF ${YELLOW}(${NC} 2024 ${YELLOW})${NC}"
+echo -e "  Auther : ${green} Devils Tunnel® ${NC}${YELLOW}(${NC} ${green} Devils Tunnel ${NC}${YELLOW})${NC}"
+echo -e " © Recode By My Self Rizyul Store ${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
 echo ""
 sleep 2
@@ -311,10 +311,12 @@ clear
 #GANTI PASSWORD DEFAULT
 restart_system() {
     USRSC=$(wget -qO- https://raw.githubusercontent.com/SatanFusionOfficial/permission/main/ip | grep $MYIP | awk '{print $2}')
-    EXPipsaya | awk '{print $2}')
-    EXPSC=$(wget -qO- https://raw.githubusercontent.com/SatanFusionOfficial/permission/main/ip | grep $ipsaya | awk '{print $3}')
+    EXPSC=$(wget -qO- https://raw.githubusercontent.com/SatanFusionOfficial/permission/main/ip | grep $MYIP | awk '{print $3}')
     TIMEZONE=$(printf '%(%H:%M:%S)T')
+    MYIP=$(curl -sS ipv4.icanhazip.com)
     TIME=$(date +'%Y-%m-%d %H:%M:%S')
+    curl -s ipinfo.io/city?token=75082b4831f909 >> /etc/xray/city
+    curl -s ipinfo.io/org?token=75082b4831f909  | cut -d " " -f 2-10 >> /etc/xray/isp
     TEXT="
 <code>────────────────────</code>
 <b>⚡AUTOSCRIPT PREMIUM⚡</b>
@@ -323,12 +325,12 @@ restart_system() {
 <code>Domain : </code><code>$domain</code>
 <code>Date   : </code><code>$TIME</code>
 <code>Time   : </code><code>$TIMEZONE</code>
-<code>Ip vps : </code><code>${MYIP}</code>
+<code>Ip vps : </code><code>$MYIP</code>
 <code>Exp Sc : </code><code>$EXPSC</code>
 <code>────────────────────</code>
 <i>Automatic Notification from Github</i>
-"'&reply_markup={"inline_keyboard":[[{"text":"CHANNEL","url":"https://t.me/satanofficiall"},{"text":"ORDER","url":"https://t.me/abecasdee"}]]}'
-curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ🐳","url":"https://t.me/Rizyul04"},{"text":"ɪɴꜱᴛᴀʟʟ🐬","url":"https://t.me/rizyulvpn"}]]}'
+    curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 clear
 # Pasang SSL
@@ -419,7 +421,7 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
     # Settings UP Nginix Server
     clear
     curl -s ipinfo.io/city >>/etc/xray/city
-    curl -s ipinfo.io/org?token=75082b4831f909  | cut -d " " -f 2-10 >> /etc/xray/isp
+    curl -s ipinfo.io/org | cut -d " " -f 2-10 >>/etc/xray/isp
     print_install "Memasang Konfigurasi Packet"
     wget -O /etc/haproxy/haproxy.cfg "${REPO}limit/haproxy.cfg" >/dev/null 2>&1
     wget -O /etc/nginx/conf.d/xray.conf "${REPO}limit/xray.conf" >/dev/null 2>&1
@@ -533,7 +535,7 @@ print_success "Password SSH"
 function udp_mini(){
 clear
 print_install "Memasang Service Limit Quota"
-wget raw.githubusercontent.com/SatanTech/SFPremium/main/limit/limit.sh && chmod +x limit.sh && ./limit.sh
+wget raw.githubusercontent.com/arifkenza09/vip/main/limit/limit.sh && chmod +x limit.sh && ./limit.sh
 
 cd
 wget -q -O /usr/bin/limit-ip "${REPO}limit/limit-ip"
