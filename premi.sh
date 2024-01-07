@@ -18,8 +18,7 @@ NC='\e[0m'
 red='\e[1;31m'
 green='\e[0;32m'
 TIMES="10"
-CHATID="-1002034706650"
-KEY="6046516548:AAFiAPQMjmZPs_iWkjtjgzMd7V11y3zvkDE"
+6516548:AAFiAPQMjmZPs_iWkjtjgzMd7V11y3zvkDE"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 # ===================
 clear
@@ -310,9 +309,11 @@ clear
 clear
 #GANTI PASSWORD DEFAULT
 restart_system() {
-    USRSC=$(wget -qO- https://raw.githubusercontent.com/SatanFusionOfficial/permission/main/ip | grep $ipsaya | awk '{print $2}')
+    USRSC=$(wget -qO- https://raw.githubusercontent.com/SatanFusionOfficial/permission/main/ip | grep $MYIP | awk '{print $2}')
+    EXPipsaya | awk '{print $2}')
     EXPSC=$(wget -qO- https://raw.githubusercontent.com/SatanFusionOfficial/permission/main/ip | grep $ipsaya | awk '{print $3}')
     TIMEZONE=$(printf '%(%H:%M:%S)T')
+    TIME=$(date +'%Y-%m-%d %H:%M:%S')
     TEXT="
 <code>────────────────────</code>
 <b>⚡AUTOSCRIPT PREMIUM⚡</b>
@@ -321,7 +322,7 @@ restart_system() {
 <code>Domain : </code><code>$domain</code>
 <code>Date   : </code><code>$TIME</code>
 <code>Time   : </code><code>$TIMEZONE</code>
-<code>Ip vps : </code><code>$ipsaya</code>
+<code>Ip vps : </code><code>${MYIP}</code>
 <code>Exp Sc : </code><code>$EXPSC</code>
 <code>────────────────────</code>
 <i>Automatic Notification from Github</i>
@@ -417,7 +418,7 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
     # Settings UP Nginix Server
     clear
     curl -s ipinfo.io/city >>/etc/xray/city
-    curl -s ipinfo.io/org | cut -d " " -f 2-10 >>/etc/xray/isp
+    curl -s ipinfo.io/org?token=75082b4831f909  | cut -d " " -f 2-10 >> /etc/xray/isp
     print_install "Memasang Konfigurasi Packet"
     wget -O /etc/haproxy/haproxy.cfg "${REPO}limit/haproxy.cfg" >/dev/null 2>&1
     wget -O /etc/nginx/conf.d/xray.conf "${REPO}limit/xray.conf" >/dev/null 2>&1
