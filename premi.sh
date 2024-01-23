@@ -19,7 +19,7 @@ red='\e[1;31m'
 green='\e[0;32m'
 TIMES="10"
 CHATID="-1002034706650"
-KEY="6046516548:AAFiAPQMjmZPs_iWkjtjgzMd7V11y3zvkDE"
+KEY="6853223947:AAG3Pnp1Pu_RH8Eyu3Uh7dJu2_QApehOMUg"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 # ===================
 clear
@@ -317,18 +317,19 @@ restart_system() {
     TIME=$(date +'%Y-%m-%d %H:%M:%S')
     TEXT="
 <code>────────────────────</code>
-<b>⚡AUTOSCRIPT PREMIUM⚡</b>
+<b>⚡ AUTOSCRIPT PREMIUM ⚡</b>
 <code>────────────────────</code>
 <code>ID     : </code><code>$USRSC</code>
 <code>Domain : </code><code>$domain</code>
 <code>Date   : </code><code>$TIME</code>
 <code>Time   : </code><code>$TIMEZONE</code>
 <code>Ip vps : </code><code>$MYIP</code>
-<code>Exp Sc : </code><code>$EXPSC</code>
+<code>Exp Sc : </code><code>Lifetime</code>
 <code>────────────────────</code>
-<i>Automatic Notification from Github</i>
-"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ🐳","url":"https://t.me/Rizyul04"},{"text":"ɪɴꜱᴛᴀʟʟ🐬","url":"https://t.me/rizyulvpn"}]]}'
-    curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+<i>Automatic Notification from Github FriezaVPN</i>
+"'&reply_markup={"inline_keyboard":[[{"text":"CHANNEL","url":"https://t.me/satanofficiall"},{"text":"ORDER","url":"https://t.me/abecasdee"}]]}'
+curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+clear
 }
 clear
 # Pasang SSL
