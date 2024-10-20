@@ -201,6 +201,52 @@ print_install "Membuat direktori xray"
     export Arch=$( uname -m )
     export IP=$( curl -s https://ipinfo.io/ip/ )
 
+# Fungsi untuk memeriksa apakah OS adalah Ubuntu
+install_on_ubuntu() {
+    echo "Detected Ubuntu. Installing HAProxy for Ubuntu..."
+    sudo add-apt-repository ppa:vbernat/haproxy-2.6 -y
+    sudo apt update
+    sudo apt install haproxy -y
+}
+
+# Fungsi untuk memeriksa apakah OS adalah Debian
+install_on_debian() {
+    echo "Detected Debian. Installing HAProxy for Debian..."
+    echo "deb http://deb.debian.org/debian bullseye-backports main" | sudo tee -a /etc/apt/sources.list.d/backports.list
+    sudo apt update
+    sudo apt install haproxy -y
+}
+
+# Fungsi untuk mendeteksi OS
+detect_os() {
+    if [ -f /etc/os-release ]; then
+        . /etc/os-release
+        OS=$ID
+        VERSION=$VERSION_ID
+    else
+        echo "Unable to detect operating system."
+        exit 1
+    fi
+}
+
+# Cek apakah OS adalah Ubuntu atau Debian, lalu jalankan instalasi yang sesuai
+if [ "$OS" == "ubuntu" ]; then
+    install_on_ubuntu
+elif [ "$OS" == "debian" ]; then
+    install_on_debian
+else
+    echo "This script supports only Ubuntu and Debian."
+    exit 1
+fi
+
+# Verifikasi apakah HAProxy berhasil diinstal
+haproxy -v
+if [ $? -eq 0 ]; then
+    echo "HAProxy installed successfully."
+else
+    echo "Failed to install HAProxy."
+fi
+
 # Change Environment System
 function first_setup(){
     timedatectl set-timezone Asia/Jakarta
@@ -966,6 +1012,7 @@ clear
     pasang_domain
     password_default
     pasang_ssl
+    detect_os
     install_xray
     ssh
     udp_mini
